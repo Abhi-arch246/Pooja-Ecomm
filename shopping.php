@@ -106,7 +106,7 @@ if(isset($_POST['add_to_cart'])){
                     <small><s class="text-secondary">Rs.<?php echo $result2['aprice'];?></s></small>
                     <span class="price">Rs.<?php echo number_format($result2['bprice'],2);?></span>
                   </h5>
-                  <input class="form-control text-center" type="number" name="quantity" value="1">
+                  <input class="form-control text-center" type="number" min="1" name="quantity" value="1">
                   <input type="hidden" name="id" value="<?= $result2['id'] ?>">
                   <input type="hidden" name="pname" value="<?= $result2['pname'] ?>">
                   <input type="hidden" name="bprice" value="<?= $result2['bprice'] ?>">
