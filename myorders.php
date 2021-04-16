@@ -44,6 +44,7 @@ $email=$_SESSION['email'];
             <li><a href="home.php">Home</a></li>
             <li><a href="shopping.php">Shopping</a></li>
             <li><a href="mycart.php">My Cart</a></li>
+            <li><a href="myorders.php" class="active">My Orders</a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
@@ -54,6 +55,7 @@ $email=$_SESSION['email'];
     <div class="container-fluid">
     <table class="table table-responsive-sm table-dark table-hover table-bordered">
       <tr class="bg-primary text-center text-white">
+          <td>Order ID</td>
           <td>Transaction ID</td>
           <td>Product Name</td>
           <td>Product Price</td>
@@ -68,6 +70,7 @@ $email=$_SESSION['email'];
         while ($result1=mysqli_fetch_array($query1)) {
         ?>
         <tr class="text-center">
+        <td><?php echo $result1['checkout_id'] ?></td>
         <td><?php echo $result1['transid'] ?></td>
          <td><?php echo $result1['pname'];?></td>
          <td><?php echo '₹'.number_format($result1['bprice'],2);?></td>
@@ -86,7 +89,7 @@ $email=$_SESSION['email'];
          <?php
          }else {
          ?>
-         <td class="bg-white text-success">Out for delivery</td>
+         <td class="bg-white text-success">Product Delivered</td>
          <?php
          }
          ?>

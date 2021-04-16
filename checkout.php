@@ -2,7 +2,7 @@
 session_start();
 include 'required/conn.php';
 $tid=uniqid();
-$cchange=rand(0,1000);
+$checkout_id=date('A-g-i-D-m-Y-W').uniqid();
 $email=$_SESSION['email'];
 $total=0;
 $sql="SELECT * FROM cart WHERE email='$email' AND status='1'";
@@ -14,7 +14,7 @@ while ($result=mysqli_fetch_array($query)) {
   $bprice=$result['bprice'];
   $quantity=$result['quantity'];
   $ptotal=$bprice*$quantity;
-  $insert="INSERT INTO orders(transid,id,email,pname,bprice,quantity,ptotal,cchange) VALUES ('$tid','$id','$email','$pname','$bprice','$quantity','$ptotal','$cchange')";
+  $insert="INSERT INTO orders(transid,id,email,pname,bprice,quantity,ptotal,checkout_id) VALUES ('$tid','$id','$email','$pname','$bprice','$quantity','$ptotal','$checkout_id')";
   mysqli_query($conn,$insert);
   $tid=uniqid();
 
@@ -43,7 +43,7 @@ mysqli_query($conn,$update);
 <div class="container text-center p-2 my-5">
 <div class="col-md-7 mx-auto rounded bg-white mb-5">
 <h4 class="pt-5">Ordered Email: <?php echo $email ?></h4>
-<h4 class="pt-2">Transaction ID: <?php echo $tid ?></h4>
+<h4 class="pt-2">Order ID: <?php echo $checkout_id ?></h4>
 <div class="container p-3">
 <table class="table table-responsive-sm table-dark table-hover table-bordered">
 <tr class="bg-primary text-center text-white">
@@ -54,7 +54,7 @@ mysqli_query($conn,$update);
           <td>Total Price</td>
         </tr>
         <?php
-        $select="SELECT * FROM orders WHERE email='$email' AND cchange='$cchange'";
+        $select="SELECT * FROM orders WHERE email='$email' AND checkout_id='$checkout_id'";
         $query1=mysqli_query($conn,$select);
         while ($result1=mysqli_fetch_array($query1)) {
         ?>

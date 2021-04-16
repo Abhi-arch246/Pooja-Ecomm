@@ -40,6 +40,7 @@ if (!isset($_SESSION['email'])) {
             <li><a href="home.php" class="active">Home</a></li>
             <li><a href="shopping.php">Shopping</a></li>
             <li><a href="mycart.php">My Cart</a></li>
+            <li><a href="myorders.php">My Orders</a></li>
             <li><a href="logout.php">Logout</a></li>
           </ul>
         </div>
