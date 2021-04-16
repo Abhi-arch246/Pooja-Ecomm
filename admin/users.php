@@ -98,7 +98,7 @@ if(!isset($_SESSION['password'])){
         <?php
          }else{
            ?>
-          <td><button class="btn p-2 btn-success">Premium Subscriber</button></td>
+          <td><button class="btn p-2 btn-success"><a href="normal.php?id=<?php echo $result['id']; ?>" class="btn btn-warning text-white">Premium Subscriber</a></button></td>
         </tr>
            <?php
          }

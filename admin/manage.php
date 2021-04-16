@@ -74,6 +74,7 @@ if(!isset($_SESSION['password'])){
     <div class="col-md-12 mt-4">
        <table id="order_table" class="table table-responsive-sm table-stripped table-hover table-bordered">
        <tr class="bg-dark text-center text-white">
+          <th scope="col">Order Id</th>
           <th scope="col">Transaction Id</th>
           <th scope="col">Email Address</th>
           <th scope="col">Product Id</th>
@@ -91,6 +92,7 @@ if(!isset($_SESSION['password'])){
         while ($result=mysqli_fetch_array($query)) {
          ?>
          <tr class="text-center">
+         <td><?php echo $result['checkout_id'];?></td>
          <td><?php echo $result['transid'];?></td>
          <td><?php echo $result['email'];?></td>
          <td><?php echo $result['id'];?></td>

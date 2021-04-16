@@ -75,6 +75,7 @@ if(!isset($_SESSION['password'])){
        <table id="order_table" class="table table-responsive-sm table-stripped table-hover table-bordered">
         <thead class="bg-dark text-center text-white">
         <tr class="text-center text-white">
+          <th scope="col">Order Id</th>
           <th scope="col">Transaction Id</th>
           <th scope="col">Email Address</th>
           <th scope="col">Product Id</th>
@@ -96,6 +97,7 @@ if(!isset($_SESSION['password'])){
               "dataSrc":""
             },
             "columns":[
+              {"data":"checkout_id"},
               {"data":"transid"},
               {"data":"email"},
               {"data":"id"},
