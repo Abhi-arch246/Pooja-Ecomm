@@ -1,26 +1,3 @@
-<?php 
-session_start();
-include 'required/conn.php';
-$email    = "";
-
-if (isset($_POST['lgn_submit'])) {
-  $email=mysqli_escape_string($conn,$_POST['email']);
-  $password1=mysqli_escape_string($conn,$_POST['password1']);
-  $password1=md5($password1);
-  $sql="SELECT * FROM users WHERE email='$email'AND password='$password1'";
-  $result=mysqli_query($conn,$sql);
-  if (mysqli_num_rows($result)==1) {
-    $_SESSION['msg']="You're now logged in";
-    $_SESSION['email']=$email;
-    header("location:home.php");
-  }else{
-      echo "<script>alert('Email and Password doesn't match')</script>";
-    $_SESSION['msg']="Email and Password doesn't match";
-
-  }
-}
- ?>
-
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -29,6 +6,7 @@ if (isset($_POST['lgn_submit'])) {
      <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
      <title>Sri Sai Pooja Store | Register area</title>
      <?php include 'required/scripts.php'?>
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
  </head>
  <body style="background-image: url('https://images.pexels.com/photos/713644/pexels-photo-713644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-attachment: fixed;background-size: cover;">
     <div class="container-fluid">
@@ -65,3 +43,35 @@ if (isset($_POST['lgn_submit'])) {
      
  </body>
  </html>
+
+ <?php 
+session_start();
+include 'required/conn.php';
+$email    = "";
+
+if (isset($_POST['lgn_submit'])) {
+  $email=mysqli_escape_string($conn,$_POST['email']);
+  $password1=mysqli_escape_string($conn,$_POST['password1']);
+  $password1=md5($password1);
+  $sql="SELECT * FROM users WHERE email='$email'AND password='$password1'";
+  $result=mysqli_query($conn,$sql);
+  if (mysqli_num_rows($result)==1) {
+    $_SESSION['msg']="You're now logged in";
+    $_SESSION['email']=$email;
+    header("location:home.php");
+  }else{
+      ?>
+      
+      <script>
+      Swal.fire({
+        title: 'Email and password does not match!!',
+        text: '',
+        icon: 'error',
+        confirmButtonText: 'Dismiss'
+      })
+      </script>
+   
+    <?php
+  }
+}
+ ?>

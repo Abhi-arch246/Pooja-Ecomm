@@ -12,6 +12,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Sri Sai Pooja Store | Register area</title>
     <?php include 'required/scripts.php'?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 <body style="background:#ff005c">
@@ -66,8 +67,16 @@ if (isset($_POST['submit'])) {
 
   if ($password1!=$password2) 
     {
-      echo "
-      <script>alert('Passwords does not match!');</script>";
+      ?>
+      <script>
+      Swal.fire({
+        title: 'Email and password does not match!!',
+        text: '',
+        icon: 'error',
+        confirmButtonText: 'Dismiss'
+      })
+      </script>
+      <?php
       }
   else{
     $check_query="SELECT * FROM users WHERE email='$email'";
@@ -75,15 +84,38 @@ if (isset($_POST['submit'])) {
     $user=mysqli_fetch_assoc($result);
     if ($user) {
        if ($user['email']===$email) {
-         echo "<script>alert('This Email is already registered!!')</script>";
+         ?>
+         <script>
+        Swal.fire({
+        title: 'This email already exists',
+        text: '',
+        icon: 'warning',
+        confirmButtonText: 'Dismiss'
+      })
+      </script>
+         <?php
         } 
     }else{
        $password1=md5($password1);
        $sql="INSERT INTO users(email,name,password) VALUES('$email','$name','$password1')";
        mysqli_query($conn,$sql);
-       $_SESSION['msg']="You're now Logged in";
-       $_SESSION['email']=$email;
-       header("location:login.php");
+       ?>
+       <script>
+        Swal.fire({
+        title: 'Registered succesfully',
+        text: 'Now Please Log In',
+        icon: 'info',
+        confirmButtonText: `Log in`,
+        denyButtonText: `Cancel`,})
+        .then((result) => {
+          if (result.isConfirmed) {
+            location.replace("login.php");
+          } else if (result.isDenied) {
+            location.replace("index.php");
+          }
+      })
+      </script>
+      <?php
       }
   }
 }
