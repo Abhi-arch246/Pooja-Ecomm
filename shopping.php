@@ -29,7 +29,7 @@ if(isset($_POST['add_to_cart'])){
   <meta charset="utf-8">
   <meta name="description" content="A Brand New Ecommerce website">
   <meta name="keywords" content="Shop,phone,deals,fashion">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?php include 'required/scripts.php' ?>
   <title>Pooja Store | Shopping Area</title>
@@ -136,6 +136,11 @@ if(isset($_POST['add_to_cart'])){
   <?php include 'required/footer.php' ?>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+     $(document).ready(function () {
+      $(".menu-icon").on("click", function () {
+            $("nav ul").toggleClass("showing");
+      });
+    });
   AOS.init();
   </script>
   <!-- Bootstrap JS -->

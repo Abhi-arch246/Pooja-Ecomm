@@ -24,6 +24,7 @@ if (!isset($_SESSION['email'])) {
       background-position: center;
       background-attachment: scroll;
 }
+
   </style>
 
   
@@ -175,6 +176,11 @@ if (!isset($_SESSION['email'])) {
   <?php include 'required/footer.php' ?>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    $(document).ready(function () {
+      $(".menu-icon").on("click", function () {
+            $("nav ul").toggleClass("showing");
+      });
+    });
   AOS.init({
     duration:1200
   });

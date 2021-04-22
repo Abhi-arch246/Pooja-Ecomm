@@ -14,10 +14,10 @@ if(!isset($_SESSION['password'])){
   <meta charset="utf-8">
   <meta name="description" content="A Brand New Ecommerce website">
   <meta name="keywords" content="Shop,phone,deals,fashion">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <?php include '../required/scripts.php' ?>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -91,6 +91,10 @@ if(!isset($_SESSION['password'])){
 
     <script type="text/javascript">
         $(document).ready(function(){
+          $(".menu-icon").on("click", function () {
+            $("nav ul").toggleClass("showing");
+          });
+
           $('#order_table').dataTable({
             "ajax":{
               "url":"data.php",
@@ -123,11 +127,12 @@ if(!isset($_SESSION['password'])){
     <!-- Footer Section Begin -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+     
   AOS.init();
   </script>
   <!-- Bootstrap JS -->
   
   <script src="htpps://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../main.js"></script>
+  <!-- <script type="text/javascript" src="../main.js"></script> -->
 </body>
 </html>
